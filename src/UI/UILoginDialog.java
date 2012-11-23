@@ -46,8 +46,9 @@ public class UILoginDialog extends javax.swing.JDialog {
         }
         //</editor-fold>
         
-        setLocationRelativeTo(null);
-        
+        setLocationRelativeTo(null);	
+	setResizable(false);
+	
     }
     
     

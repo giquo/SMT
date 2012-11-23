@@ -4,6 +4,8 @@
  */
 package UI;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author gquevedo
@@ -15,8 +17,9 @@ public class UIMainMenu extends javax.swing.JFrame {
      */
     public UIMainMenu() {
         initComponents();
-        setSize(1024,768);
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
         setLocationRelativeTo(null);
+        
     }
 
     /**
@@ -103,6 +106,11 @@ public class UIMainMenu extends javax.swing.JFrame {
                 bttnClientesMouseExited(evt);
             }
         });
+        bttnClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttnClientesActionPerformed(evt);
+            }
+        });
         jPanel1.add(bttnClientes);
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
@@ -112,7 +120,9 @@ public class UIMainMenu extends javax.swing.JFrame {
 
     private void bttnAdministracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnAdministracionActionPerformed
         // TODO add your handling code here:
-        UILoginDialog.loguear(this, true);
+        
+        //UILoginDialog.loguear(this, true);
+        UIAdminStruct uiAdministrador = new UIAdminStruct(this);
         
     }//GEN-LAST:event_bttnAdministracionActionPerformed
 
@@ -162,6 +172,13 @@ public class UIMainMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
         etqStatus.setText("SMT");
     }//GEN-LAST:event_bttnClientesMouseExited
+
+    private void bttnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnClientesActionPerformed
+        // TODO add your handling code here:
+        
+        UIClientes uiClientes = new UIClientes(this);
+        
+    }//GEN-LAST:event_bttnClientesActionPerformed
 
     /**
      * @param args the command line arguments
