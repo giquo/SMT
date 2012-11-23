@@ -32,6 +32,7 @@ public class UIAdminStruct extends javax.swing.JFrame {
         jSplitPane1 = new javax.swing.JSplitPane();
         tabPanRutaEstacion = new javax.swing.JTabbedPane();
         panRuta = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
         panEstaciones = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jPanel3 = new javax.swing.JPanel();
@@ -46,6 +47,10 @@ public class UIAdminStruct extends javax.swing.JFrame {
         getContentPane().add(jTabbedPane1, java.awt.BorderLayout.PAGE_END);
 
         tabPanRutaEstacion.setPreferredSize(new java.awt.Dimension(200, 82));
+
+        jButton1.setText("jButton1");
+        panRuta.add(jButton1);
+
         tabPanRutaEstacion.addTab("Ruta", panRuta);
         tabPanRutaEstacion.addTab("Estaciones", panEstaciones);
 
@@ -53,8 +58,7 @@ public class UIAdminStruct extends javax.swing.JFrame {
 
         jPanel3.setLayout(new java.awt.BorderLayout());
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\giquo\\Desktop\\mapa-ruta.jpg")); // NOI18N
-        jLabel1.setText("jLabel1");
+        jLabel1.setIcon(new javax.swing.ImageIcon("/afs/eisc.univalle.edu.co/user/pregrado/2009/gquevedo/Escritorio/mapa_Cali_Reducido.jpg")); // NOI18N
         jPanel3.add(jLabel1, java.awt.BorderLayout.CENTER);
 
         jScrollPane3.setViewportView(jPanel3);
@@ -108,6 +112,7 @@ public class UIAdminStruct extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
