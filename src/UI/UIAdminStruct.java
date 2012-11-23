@@ -58,7 +58,7 @@ public class UIAdminStruct extends javax.swing.JFrame {
 
         jPanel3.setLayout(new java.awt.BorderLayout());
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("/afs/eisc.univalle.edu.co/user/pregrado/2009/gquevedo/Escritorio/mapa_Cali_Reducido.jpg")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\giquo\\Desktop\\mapa-ruta.jpg")); // NOI18N
         jPanel3.add(jLabel1, java.awt.BorderLayout.CENTER);
 
         jScrollPane3.setViewportView(jPanel3);
