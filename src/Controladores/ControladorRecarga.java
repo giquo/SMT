@@ -94,6 +94,24 @@ public class ControladorRecarga
         }
     }
     
+    public Recarga simularRecarga(int consecutivo, int pin_tarjeta, String id_estacion, String id_empleado, Date fecha, int valor)
+    {
+       
+        Tarjeta tarjeta = daoTarjeta.findTarjeta(pin_tarjeta);
+        Estacion estacion = daoEstacion.findEstacion(id_estacion);
+        Empleado empleado = daoEmpleado.findEmpleado(id_empleado);
+
+        Recarga unRecarga = new Recarga();
+        unRecarga.setConsecutivo(consecutivo);
+        unRecarga.setPinTarjeta(tarjeta);
+        unRecarga.setIdEstacion(estacion);
+        unRecarga.setIdEmpleado(empleado);
+        unRecarga.setFecha(fecha);
+        unRecarga.setValor(valor);
+        
+        return unRecarga;
+    }
+    
     public void modificar(Recarga recarga)
     {
         try 

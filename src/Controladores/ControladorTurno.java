@@ -93,6 +93,23 @@ public class ControladorTurno
         }
     }
     
+    public Turno simularTurno(String id_empleado, String id_ruta, String id_bus, Date fecha, String jornada)
+    {
+        Empleado empleado = daoEmpleado.findEmpleado(id_empleado);
+        Ruta ruta = daoRuta.findRuta(id_ruta);
+        Bus bus = daoBus.findBus(id_bus);
+        
+        TurnoPK turnopk = new TurnoPK(id_bus, fecha, jornada);
+        
+        Turno unTurno = new Turno();
+        unTurno.setBus(bus);
+        unTurno.setIdRuta(ruta);
+        unTurno.setIdEmpleado(empleado);
+        unTurno.setTurnoPK(turnopk);
+        
+        return unTurno;
+    }
+    
     public void modificar(Turno turno)
     {
         try 

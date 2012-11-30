@@ -78,6 +78,18 @@ public class ControladorTarjeta
         }
     }
     
+    public Tarjeta simularTarjeta(int pin_tarjeta, String tipo_tarjeta, String estado_tarjeta, int saldo)
+    {
+       
+        Tarjeta unTarjeta = new Tarjeta();
+        unTarjeta.setPinTarjeta(pin_tarjeta);
+        unTarjeta.setTipoTarjeta(tipo_tarjeta);
+        unTarjeta.setEstadoTarjeta(estado_tarjeta);
+        unTarjeta.setSaldo(saldo);
+        
+        return unTarjeta;
+    }
+    
     public void modificar(Tarjeta tarjeta)
     {
         try 

@@ -98,6 +98,25 @@ public class ControladorVentaTarjeta
         }
     }
     
+    public VentaTarjeta simularVentaTarjeta(int id_tarjeta, String id_empleado, String id_estacion, String id_pasajero, Date fecha)
+    {
+        
+        Tarjeta tarjeta = daoTarjeta.findTarjeta(id_tarjeta);
+        Empleado empleado = daoEmpleado.findEmpleado(id_empleado);
+        Estacion estacion = daoEstacion.findEstacion(id_estacion);
+        Pasajero pasajero = daoPasajero.findPasajero(id_pasajero);
+        
+        VentaTarjeta unVentaTarjeta = new VentaTarjeta();
+        unVentaTarjeta.setPinTarjeta(id_tarjeta);
+        unVentaTarjeta.setFecha(fecha);
+        unVentaTarjeta.setTarjeta(tarjeta);
+        unVentaTarjeta.setIdEmpleado(empleado);
+        unVentaTarjeta.setIdEstacion(estacion);
+        unVentaTarjeta.setIdPasajero(pasajero);
+        
+        return unVentaTarjeta;
+    }
+    
     public void modificar(VentaTarjeta ventaTarjeta)
     {
         try 

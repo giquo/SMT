@@ -83,6 +83,20 @@ public class ControladorEstacion
         }
     }
     
+    public Estacion simularEstacion(String id_estacion, String nombre_estacion, String tipo_estacion, String direccion_estacion, String empleado_encargado)
+    {
+        Empleado unEmpleado = daoEmpleado.findEmpleado(empleado_encargado);
+ 
+        Estacion unaEstacion = new Estacion();
+        unaEstacion.setIdEstacion(id_estacion);
+        unaEstacion.setNombreEstacion(nombre_estacion);
+        unaEstacion.setTipoEstacion(tipo_estacion);
+        unaEstacion.setEmpleadoEncargado(unEmpleado);
+        unaEstacion.setDireccionEstacion(direccion_estacion);
+        
+        return unaEstacion;
+    }
+    
     public void modificar(Estacion estacion)
     {
         try 

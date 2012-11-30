@@ -77,6 +77,17 @@ public class ControladorRuta
         }
     }
     
+    public Ruta simularRuta(String id_ruta, String tipo_ruta, String paradas)
+    {
+
+        Ruta unRuta = new Ruta();
+        unRuta.setIdRuta(id_ruta);
+        unRuta.setTipoRuta(tipo_ruta);
+        unRuta.setParadas(paradas);
+        
+        return unRuta;
+    }
+    
     public void modificar(Ruta ruta)
     {
         try 

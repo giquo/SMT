@@ -94,6 +94,25 @@ public class ControladorQuejasYReclamos
         }
     }
     
+    public QuejasYReclamos simularQuejaOReclamo(String id_pasajero, String id_estacion, String id_empleado, int no_ticket, String estado, String descripcion, Date fecha)
+    {
+        Pasajero pasajero = daoPasajero.findPasajero(id_pasajero);
+        Estacion estacion = daoEstacion.findEstacion(id_estacion);
+        Empleado empleado = daoEmpleado.findEmpleado(id_empleado);
+        
+
+        QuejasYReclamos unQuejasYReclamos = new QuejasYReclamos();
+        unQuejasYReclamos.setIdEmpleado(empleado);
+        unQuejasYReclamos.setIdEstacion(estacion);
+        unQuejasYReclamos.setIdPasajero(pasajero);
+        unQuejasYReclamos.setNoTicket(no_ticket);
+        unQuejasYReclamos.setEstado(estado);
+        unQuejasYReclamos.setDescripcion(descripcion);
+        unQuejasYReclamos.setFecha(fecha);
+        
+        return unQuejasYReclamos;
+    }
+    
     public void modificar(QuejasYReclamos quejasYReclamos)
     {
         try 

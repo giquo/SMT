@@ -89,6 +89,23 @@ public class ControladorEmpleado
         }
     }
     
+    public Empleado simularEmpleado(String id_empleado, String nombre_empleado, Date fecha_nac, int estrato_empleado, String genero_empleado, String cargo, String direccion_empleado, int salario, String telefono_empleado)
+    {
+ 
+        Empleado unEmpleado = new Empleado();
+        unEmpleado.setIdEmpleado(id_empleado);
+        unEmpleado.setNombreEmpleado(nombre_empleado);
+        unEmpleado.setFechaNac(fecha_nac);
+        unEmpleado.setEstratoEmpleado(estrato_empleado);
+        unEmpleado.setGeneroEmpleado(genero_empleado);
+        unEmpleado.setCargo(cargo);
+        unEmpleado.setDireccionEmpleado(direccion_empleado);
+        unEmpleado.setSalario(salario);
+        unEmpleado.setTelefonoEmpleado(telefono_empleado);
+        
+        return unEmpleado;
+    }
+    
     public void modificar(Empleado unEmpleado)
     {
         try 

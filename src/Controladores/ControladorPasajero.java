@@ -83,6 +83,20 @@ public class ControladorPasajero
         }
     }
     
+    public Pasajero SimularPasajero(String id_pasajero, String nombre_pasajero, int estrato_pasajero, String direccion_pasajero, String telefono_pasajero, String genero_pasajero)
+    {
+
+        Pasajero unPasajero = new Pasajero();
+        unPasajero.setIdPasajero(id_pasajero);
+        unPasajero.setNombrePasajero(nombre_pasajero);
+        unPasajero.setEstratoPasajero(estrato_pasajero);
+        unPasajero.setDireccionPasajero(direccion_pasajero);
+        unPasajero.setTelefonoPasajero(telefono_pasajero);
+        unPasajero.setGeneroPasajero(genero_pasajero);
+        
+        return unPasajero;
+    }
+    
     public void modificar(Pasajero pasajero)
     {
         try 

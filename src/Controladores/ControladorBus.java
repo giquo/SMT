@@ -48,6 +48,23 @@ public class ControladorBus
             return lista;
     }
     
+    public Bus simularBus(String id_bus, String tipo_bus, String carroceria, int capacidadParados, int capacidadSentados, String rutaAsignada)
+    {
+        
+        Ruta ruta = daoRuta.findRuta(rutaAsignada);
+        
+
+        Bus unBus = new Bus();
+        unBus.setIdBus(id_bus);
+        unBus.setTipoBus(tipo_bus);
+        unBus.setCarroceria(carroceria);
+        unBus.setCapacidadParados(capacidadParados);
+        unBus.setCapacidadSillas(capacidadSentados);
+        unBus.setRutaAsignada(ruta);
+        
+        return unBus;
+    }
+    
     public void insertar(String id_bus, String tipo_bus, String carroceria, int capacidadParados, int capacidadSentados, String rutaAsignada)
     {
         
