@@ -4,6 +4,7 @@
  */
 package UI;
 
+import Controladores.FabricaObjetos;
 import java.awt.Component;
 import javax.swing.JFrame;
 
@@ -14,13 +15,13 @@ import javax.swing.JFrame;
 public class UIAdminStruct extends javax.swing.JFrame {
 
     private Component uiParent;
-    
+    private FabricaObjetos fabrica;
     /**
      * Creates new form UIAdminStruct
      */
-    public UIAdminStruct(JFrame parent) {
+    public UIAdminStruct(JFrame parent, FabricaObjetos fabricaObj) {
         initComponents();
-        
+        fabrica = fabricaObj;
         /*
          * Set the Nimbus look and feel
          */

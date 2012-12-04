@@ -4,6 +4,7 @@
  */
 package UI;
 
+import Controladores.FabricaObjetos;
 import java.awt.Component;
 import javax.swing.JFrame;
 
@@ -14,11 +15,11 @@ import javax.swing.JFrame;
 public class UIClientes extends javax.swing.JFrame {
 
     private Component uiParent;
-    
+    private FabricaObjetos fabrica;
     /**
      * Creates new form UIClientes
      */
-    public UIClientes(JFrame parent) {
+    public UIClientes(JFrame parent, FabricaObjetos fabricaObj) {
         initComponents();
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -46,6 +47,7 @@ public class UIClientes extends javax.swing.JFrame {
         setVisible(true);
         uiParent = parent;
         uiParent.setVisible(false);
+        fabrica = fabricaObj;
     }
 
     /**

@@ -4,21 +4,26 @@
  */
 package UI;
 
+import Controladores.FabricaObjetos;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author gquevedo
  */
 public class UIMainMenu extends javax.swing.JFrame {
-
+    
+    private static FabricaObjetos fabrica;
     /**
      * Creates new form UIMainMenu
      */
-    public UIMainMenu() {
+    public UIMainMenu(){
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setLocationRelativeTo(null);
+        fabrica = new FabricaObjetos();
+        
         
     }
 
@@ -120,16 +125,21 @@ public class UIMainMenu extends javax.swing.JFrame {
 
     private void bttnAdministracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnAdministracionActionPerformed
         // TODO add your handling code here:
-        
+
         //UILoginDialog.loguear(this, true);
-        UIAdminStruct uiAdministrador = new UIAdminStruct(this);
+        UIAdminStruct uiAdministrador = new UIAdminStruct(this, fabrica);
         
     }//GEN-LAST:event_bttnAdministracionActionPerformed
 
     private void bttnEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnEmpleadosActionPerformed
         // TODO add your handling code here:
 
-        UILoginDialog.loguear(this, true);
+       int val= UILoginDialog.loguear(this, true, fabrica);
+       System.out.println("Valor: "+val);
+       if(val==1)
+       {
+           //Aqui iria una instancia a una ventana que aun no existe :P
+       }
         
     }//GEN-LAST:event_bttnEmpleadosActionPerformed
 
@@ -176,10 +186,15 @@ public class UIMainMenu extends javax.swing.JFrame {
     private void bttnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnClientesActionPerformed
         // TODO add your handling code here:
         
-        UIClientes uiClientes = new UIClientes(this);
+        UIClientes uiClientes = new UIClientes(this, fabrica);
         
     }//GEN-LAST:event_bttnClientesActionPerformed
 
+    public static void abrirOtraVentana()
+    {
+        JOptionPane.showMessageDialog(null, "Mensaje importante :O", "Mensaje importante :O",JOptionPane.INFORMATION_MESSAGE);
+    }
+    
     /**
      * @param args the command line arguments
      */

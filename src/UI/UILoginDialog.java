@@ -4,6 +4,11 @@
  */
 package UI;
 
+import Controladores.ControladorEmpleado;
+import Controladores.FabricaObjetos;
+import Entidades.Empleado;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author gquevedo
@@ -11,6 +16,9 @@ package UI;
 public class UILoginDialog extends javax.swing.JDialog {
 
     private static int loginResult;
+    private static ControladorEmpleado cEmpleados;
+    private static FabricaObjetos fabrica;
+    private static int variable;
     
     /**
      * Creates new form UILoginDialog
@@ -18,6 +26,8 @@ public class UILoginDialog extends javax.swing.JDialog {
     private UILoginDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
+        
         
         /*
          * Set the Nimbus look and feel
@@ -51,8 +61,11 @@ public class UILoginDialog extends javax.swing.JDialog {
 	
     }
     
+
     
-    public static int loguear(java.awt.Frame parent, boolean modal){
+    public static int loguear(java.awt.Frame parent, boolean modal, FabricaObjetos fabricaObj){
+        
+        fabrica = fabricaObj;
         
         System.out.println("metodo UILoginDialog.Loguear");
         UILoginDialog dialog = new UILoginDialog(parent, modal);
@@ -60,6 +73,7 @@ public class UILoginDialog extends javax.swing.JDialog {
         System.out.println("metodo UILoginDialog.Loguear before show");
         dialog.show();
         System.out.println("metodo UILoginDialog.Loguear after show");
+        
         dialog.dispose();
         
         System.out.println( getLoginResult() );
@@ -89,8 +103,6 @@ public class UILoginDialog extends javax.swing.JDialog {
         java.awt.GridBagConstraints gridBagConstraints;
 
         panAttributes = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -103,22 +115,7 @@ public class UILoginDialog extends javax.swing.JDialog {
 
         panAttributes.setLayout(new java.awt.GridBagLayout());
 
-        jLabel3.setText("Cargo");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 8, 0, 8);
-        panAttributes.add(jLabel3, gridBagConstraints);
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipadx = 36;
-        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 10);
-        panAttributes.add(jComboBox1, gridBagConstraints);
-
-        jLabel1.setText("Login");
+        jLabel1.setText("Nombre");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -137,7 +134,7 @@ public class UILoginDialog extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 10);
         panAttributes.add(jTextField1, gridBagConstraints);
 
-        jLabel2.setText("Contraseña");
+        jLabel2.setText("Id empleado");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -179,14 +176,45 @@ public class UILoginDialog extends javax.swing.JDialog {
 
     private void bttnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnEntrarActionPerformed
         // TODO add your handling code here:
+        
+        cEmpleados = new ControladorEmpleado(fabrica);
+        
         System.out.println("metodo UILoginDialog.bttnEntrarAction");
-        loginResult = (int)(Math.random()*1)+1;
-        this.dispose();
+        System.out.println("JTF: "+jTextField1.getText());
+        System.out.println("JPF: "+jPasswordField1.getText());
+
+        Empleado e = new Empleado();
+        if(cEmpleados.consultar(jPasswordField1.getText())!=null)
+        {
+            e= cEmpleados.consultar(jPasswordField1.getText());
+        
+        
+            if(e.getNombreEmpleado().equals(jTextField1.getText()))
+            {
+                JOptionPane.showMessageDialog(null, "Identificacion exitosa");
+                loginResult = 1;
+                this.dispose();
+                
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "Error de identificacion");
+                System.out.println("No Entro :(");
+                loginResult = 0;
+            }
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Codigo Inexistente");
+            System.out.println("No Entro2 :(");
+            loginResult = 0;
+        }
+        
     }//GEN-LAST:event_bttnEntrarActionPerformed
 
     private void bttnCanelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnCanelarActionPerformed
         // TODO add your handling code here:
-        
+        loginResult = 0;
         this.dispose();
     }//GEN-LAST:event_bttnCanelarActionPerformed
 
@@ -244,10 +272,8 @@ public class UILoginDialog extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bttnCanelar;
     private javax.swing.JButton bttnEntrar;
-    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel panAttributes;

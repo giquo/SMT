@@ -65,7 +65,7 @@ public class ControladorBus
         return unBus;
     }
     
-    public void insertar(String id_bus, String tipo_bus, String carroceria, int capacidadParados, int capacidadSentados, String rutaAsignada)
+    public void insertar(String id_bus, String tipo_bus, String carroceria, String motor, int capacidadParados, int capacidadSentados, String rutaAsignada)
     {
         
         Ruta ruta = daoRuta.findRuta(rutaAsignada);
@@ -75,6 +75,7 @@ public class ControladorBus
         unBus.setIdBus(id_bus);
         unBus.setTipoBus(tipo_bus);
         unBus.setCarroceria(carroceria);
+        unBus.setMotor(motor);
         unBus.setCapacidadParados(capacidadParados);
         unBus.setCapacidadSillas(capacidadSentados);
         unBus.setRutaAsignada(ruta);
