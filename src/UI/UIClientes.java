@@ -8,12 +8,14 @@ import Controladores.FabricaObjetos;
 import Dibujar_recorrido.ControladorPintarRecorrido;
 import Dibujar_recorrido.Dibujo;
 import Dibujar_recorrido.Recorrido;
+import Dibujar_recorrido.ViewportDragScrollListener;
 import Entidades.Ruta;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Label;
 import java.util.ArrayList;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
+import javax.swing.*;
+
 
 /**
  *
@@ -24,6 +26,7 @@ public class UIClientes extends javax.swing.JFrame {
     private Component uiParent;
     private FabricaObjetos fabrica;
     ControladorPintarRecorrido cpr;
+    ArrayList<Recorrido> recorridos;
     /**
      * Creates new form UIClientes
      */
@@ -84,6 +87,7 @@ public class UIClientes extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox();
         jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
         bttnCalcularRuta = new javax.swing.JButton();
         bttnAtras = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -117,6 +121,11 @@ public class UIClientes extends javax.swing.JFrame {
         panSaldo.add(jTextField1, gridBagConstraints);
 
         jButton1.setText("Consultar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -161,7 +170,12 @@ public class UIClientes extends javax.swing.JFrame {
         jPanel1.add(jComboBox2, gridBagConstraints);
 
         panPlanearRuta.add(jPanel1, java.awt.BorderLayout.NORTH);
-        panPlanearRuta.add(jScrollPane2, java.awt.BorderLayout.CENTER);
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane2.setViewportView(jTextArea1);
+
+        panPlanearRuta.add(jScrollPane2, java.awt.BorderLayout.LINE_END);
 
         bttnCalcularRuta.setText("Calcular Ruta");
         bttnCalcularRuta.addActionListener(new java.awt.event.ActionListener() {
@@ -209,16 +223,43 @@ public class UIClientes extends javax.swing.JFrame {
             if (rutasQueCumplenRecorrido.size()==0) {
                 JOptionPane.showMessageDialog(this, "No hay ninguna ruta que realice el viaje "+origen+"-->"+destino);
             } else {
-                ArrayList<Recorrido> recorridos = cpr.trazarRecorrido(rutasQueCumplenRecorrido, origen, destino);
+                recorridos = cpr.trazarRecorrido(rutasQueCumplenRecorrido, origen, destino);
                 
                 
                 Dibujo dib = new Dibujo();
-                dib.setRecorrido(recorridos.get(0));
+                Recorrido recorridoMasCorto = cpr.encontrarRecorridoMasCorto(recorridos);
+                dib.setRecorrido(recorridoMasCorto);
                 dib.setPreferredSize(new Dimension(1904, 3007));
+                jScrollPane1.setColumnHeaderView(new Label(recorridoMasCorto.getNombreRuta()));
                 jScrollPane1.getViewport().add(dib);
+                
+                String viajeString = "Rutas calculadas para el viaje\n"+origen+"-->"+destino+":";
+                for (Recorrido recorrido : recorridos) {
+                    viajeString+="\n"+recorrido.getNombreRuta();
+                }
+                jTextArea1.setText(viajeString);
+                
+                /*
+                for(int i=1; i<recorridos.size(); i++) {
+                    int confirmCode = JOptionPane.showConfirmDialog(null, "Desea ver el siguiente recorrido");
+                    
+                    if (confirmCode==0) {
+                        Dibujo dib2 = new Dibujo();
+                        dib2.setRecorrido(recorridos.get(i));
+                        dib2.setPreferredSize(new Dimension(1904, 3007));
+                        jScrollPane1.getViewport().removeAll();
+                        jScrollPane1.setColumnHeaderView(new Label(recorridos.get(i).getNombreRuta()));
+                        jScrollPane1.getViewport().add(dib2);
+                    }
+                }
+                */
             }
         }
     }//GEN-LAST:event_bttnCalcularRutaActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -266,6 +307,7 @@ public class UIClientes extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel panCenterMenu;
     private javax.swing.JPanel panMenu;

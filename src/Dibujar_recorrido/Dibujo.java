@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -36,14 +37,20 @@ public class Dibujo extends JPanel {
     public void paint(Graphics g) {
         g.setColor(Color.red); 
         //super.paint(g);
+        
         dibujarRuta(g);
         dibujarEstaciones(g);
     }
     
     public void dibujarRuta(Graphics g) {
 	    Graphics2D g2 = (Graphics2D) g;
+            
 		// dibujamos el mapa
 		g2.drawImage(imagenMapa,0,0,this);
+                g2.drawString("Ruta "+recorrido.getNombreRuta(), 30, 30);
+                g2.drawString("# de paradas="+recorrido.getParadas().size(), 30, 50);
+                DecimalFormat df = new DecimalFormat("#.###");
+                g2.drawString("Total distancia="+df.format(recorrido.getDistanciaTotal())+" Km", 30, 70);
         
         //System.out.println("se van a dibujar " + ubicaciones.size() + " ubicaciones");
         
@@ -61,8 +68,6 @@ public class Dibujo extends JPanel {
             g2.drawLine(u1.getX(), u1.getY()-2, u2.getX(), u2.getY()-2);
             g2.drawString(u1.getIdEstacion(), u1.getX()-(imagenEstacion.getWidth(this)/2), u1.getY()-(imagenEstacion.getHeight(this)/2));
             g2.drawString(u2.getIdEstacion(), u2.getX()-(imagenEstacion.getWidth(this)/2), u2.getY()-(imagenEstacion.getHeight(this)/2));
-            //g2.drawImage(imagenEstacion, u1.getX()-(imagenEstacion.getWidth(this)/2), u1.getY()-(imagenEstacion.getHeight(this)/2), this);
-            //g2.drawImage(imagenEstacion, u2.getX()-(imagenEstacion.getWidth(this)/2), u2.getY()-(imagenEstacion.getHeight(this)/2), this);
         }
     }
     

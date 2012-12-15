@@ -24,4 +24,5 @@ INSERT INTO ubicaciones_paradas VALUES ('puente de los mil dias', 1403, 956);
 
 --Rutas iniciales
 INSERT INTO ruta VALUES ('P10A', 'pretroncal', 'Estacion universidades,Estacion univalle,calle 13 con 84,calle 13 con 70,calle 13 con 66,calle 13 con 50,calle 13 con 39,calle 13 con calle 14,calle 13 con 15,Estacion san pascual');
+INSERT INTO ruta VALUES ('P70B', 'pretroncal', 'Estacion universidades,Estacion univalle,calle 13 con 84,calle 13 con 70,calle 13 con 66,calle 13 con 50,calle 13 con 39,calle 13 con calle 14,comfandi del prado,autopista con calle 44');
 INSERT INTO ruta VALUES ('P78B', 'pretroncal', 'Estacion universidades,Estacion univalle,Estacion holguines,Estacion meledez,calle 5ta con 81,autopista con 70,autopista con 54,autopista con 45,autopista con 32,comfandi del prado,autopista con calle 44,puente de los mil dias');

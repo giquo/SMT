@@ -93,9 +93,22 @@ public class ControladorPintarRecorrido {
                 }
             }
             recorrido.setParadas(paradasRecorrido);
+            recorrido.calcularDistanciaTotal();
             recorridos.add(recorrido);
         }
         return recorridos;
+    }
+    
+    public Recorrido encontrarRecorridoMasCorto(ArrayList<Recorrido> recorridos) {
+        int indiceRecorridoMasCorto=0;
+        if(recorridos.size()>1){
+            System.out.println("Comparando "+recorridos.size()+" recorridos");
+            for (int i=1; i<recorridos.size(); i++) {
+                if(recorridos.get(i).getDistanciaTotal()<recorridos.get(indiceRecorridoMasCorto).getDistanciaTotal())indiceRecorridoMasCorto=i ;
+            }
+            System.out.println("Recorrido mas corto "+recorridos.get(indiceRecorridoMasCorto).getNombreRuta());
+        }
+        return recorridos.get(indiceRecorridoMasCorto);
     }
     
     public int indexOfParada(String parada, String [] paradas) {

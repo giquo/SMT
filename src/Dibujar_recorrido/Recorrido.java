@@ -4,6 +4,7 @@
  */
 package Dibujar_recorrido;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 /**
@@ -15,8 +16,13 @@ public class Recorrido {
     String origen;
     String destino;
     ArrayList<ParadaBus> paradas;
+    double distanciaTotal;
 
     public Recorrido() {
+    }
+
+    public double getDistanciaTotal() {
+        return distanciaTotal;
     }
 
     public String getDestino() {
@@ -51,5 +57,15 @@ public class Recorrido {
         this.paradas = paradas;
     }
     
-    
+    public void calcularDistanciaTotal() {
+        double distanciaEnPixeles=0;
+        for (int i=1; i<paradas.size(); i++){
+            ParadaBus u1 = paradas.get(i-1);
+            ParadaBus u2 = paradas.get(i);
+            distanciaEnPixeles+= Math.sqrt(Math.pow((u2.getX()-u1.getX()),2)+Math.pow((u2.getY()-u1.getY()),2));
+        }
+        
+        distanciaTotal=distanciaEnPixeles*0.0082;//Conversion a km
+        System.out.println("Distancia total recorrido calculada="+distanciaTotal+" Km");
+    }
 }
