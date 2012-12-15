@@ -16,11 +16,19 @@
     <class>Entidades.Turno</class>
     <class>Entidades.Ruta</class>
     <properties>
+      <!-- <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://pgsql:5432/jdavidva"/>  
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://pgsql:5432/jdavidva"/>
       <property name="javax.persistence.jdbc.password" value="jdavidva"/>
       <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
       <property name="javax.persistence.jdbc.user" value="jdavidva"/>
+      <property name="eclipselink.ddl-generation" value="create-tables"/> -->
+      
+      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/postgres"/>
+      <property name="javax.persistence.jdbc.password" value="pass"/>
+      <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+      <property name="javax.persistence.jdbc.user" value="postgres"/>
       <property name="eclipselink.ddl-generation" value="create-tables"/>
+      
     </properties>
   </persistence-unit>
 </persistence>

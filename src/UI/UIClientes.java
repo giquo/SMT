@@ -5,8 +5,15 @@
 package UI;
 
 import Controladores.FabricaObjetos;
+import Dibujar_recorrido.ControladorPintarRecorrido;
+import Dibujar_recorrido.Dibujo;
+import Dibujar_recorrido.Recorrido;
+import Entidades.Ruta;
 import java.awt.Component;
+import java.awt.Dimension;
+import java.util.ArrayList;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,6 +23,7 @@ public class UIClientes extends javax.swing.JFrame {
 
     private Component uiParent;
     private FabricaObjetos fabrica;
+    ControladorPintarRecorrido cpr;
     /**
      * Creates new form UIClientes
      */
@@ -48,6 +56,9 @@ public class UIClientes extends javax.swing.JFrame {
         uiParent = parent;
         uiParent.setVisible(false);
         fabrica = fabricaObj;
+        cpr = new ControladorPintarRecorrido(fabrica);
+        cpr.cargarParadasEnCombo(jComboBox1);
+        cpr.cargarParadasEnCombo(jComboBox2);
     }
 
     /**
@@ -76,7 +87,6 @@ public class UIClientes extends javax.swing.JFrame {
         bttnCalcularRuta = new javax.swing.JButton();
         bttnAtras = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -154,6 +164,11 @@ public class UIClientes extends javax.swing.JFrame {
         panPlanearRuta.add(jScrollPane2, java.awt.BorderLayout.CENTER);
 
         bttnCalcularRuta.setText("Calcular Ruta");
+        bttnCalcularRuta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttnCalcularRutaActionPerformed(evt);
+            }
+        });
         panPlanearRuta.add(bttnCalcularRuta, java.awt.BorderLayout.SOUTH);
 
         panCenterMenu.add(panPlanearRuta, java.awt.BorderLayout.CENTER);
@@ -169,11 +184,6 @@ public class UIClientes extends javax.swing.JFrame {
         panMenu.add(bttnAtras, java.awt.BorderLayout.SOUTH);
 
         getContentPane().add(panMenu, java.awt.BorderLayout.EAST);
-
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\giquo\\Desktop\\mapa-ruta.jpg")); // NOI18N
-        jLabel1.setText("jLabel1");
-        jScrollPane1.setViewportView(jLabel1);
-
         getContentPane().add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
         pack();
@@ -188,6 +198,27 @@ public class UIClientes extends javax.swing.JFrame {
         uiParent.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_bttnAtrasActionPerformed
+
+    private void bttnCalcularRutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnCalcularRutaActionPerformed
+        String origen = jComboBox1.getSelectedItem().toString();
+        String destino = jComboBox2.getSelectedItem().toString();
+        if (origen.equals(destino)) {
+            JOptionPane.showMessageDialog(this, "El origen debe ser distinto al destino", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            ArrayList<Ruta> rutasQueCumplenRecorrido = cpr.buscarRutasRecorrido(origen, destino);
+            if (rutasQueCumplenRecorrido.size()==0) {
+                JOptionPane.showMessageDialog(this, "No hay ninguna ruta que realice el viaje "+origen+"-->"+destino);
+            } else {
+                ArrayList<Recorrido> recorridos = cpr.trazarRecorrido(rutasQueCumplenRecorrido, origen, destino);
+                
+                
+                Dibujo dib = new Dibujo();
+                dib.setRecorrido(recorridos.get(0));
+                dib.setPreferredSize(new Dimension(1904, 3007));
+                jScrollPane1.getViewport().add(dib);
+            }
+        }
+    }//GEN-LAST:event_bttnCalcularRutaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -229,7 +260,6 @@ public class UIClientes extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

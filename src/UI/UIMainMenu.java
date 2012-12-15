@@ -187,6 +187,7 @@ public class UIMainMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         UIClientes uiClientes = new UIClientes(this, fabrica);
+        uiClientes.setVisible(true);
         
     }//GEN-LAST:event_bttnClientesActionPerformed
 
