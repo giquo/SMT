@@ -23,10 +23,10 @@
       <property name="javax.persistence.jdbc.user" value="jdavidva"/>
       <property name="eclipselink.ddl-generation" value="create-tables"/> -->
       
-      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/postgres"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://pgsql:5432/oscaraca"/>
       <property name="javax.persistence.jdbc.password" value="pass"/>
       <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
-      <property name="javax.persistence.jdbc.user" value="postgres"/>
+      <property name="javax.persistence.jdbc.user" value="oscaraca"/>
       <property name="eclipselink.ddl-generation" value="create-tables"/>
       
     </properties>

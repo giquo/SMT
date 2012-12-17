@@ -34,8 +34,8 @@ public class FachadaBD {
         */
 
         
-        url="jdbc:postgresql://localhost:5432/postgres";
-        usuario="postgres";
+        url="jdbc:postgresql://pgsql:5432/oscaraca";
+        usuario="oscaraca";
         password="pass";
     }
 

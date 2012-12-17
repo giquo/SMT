@@ -4,15 +4,17 @@
  */
 package UI;
 
+import Controladores.ControladorTarjeta;
 import Controladores.FabricaObjetos;
 import Dibujar_recorrido.ControladorPintarRecorrido;
 import Dibujar_recorrido.Dibujo;
 import Dibujar_recorrido.Recorrido;
-import Dibujar_recorrido.ViewportDragScrollListener;
 import Entidades.Ruta;
+import Entidades.Tarjeta;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Label;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import javax.swing.*;
 
@@ -27,6 +29,7 @@ public class UIClientes extends javax.swing.JFrame {
     private FabricaObjetos fabrica;
     ControladorPintarRecorrido cpr;
     ArrayList<Recorrido> recorridos;
+    ControladorTarjeta ct;
     /**
      * Creates new form UIClientes
      */
@@ -56,6 +59,7 @@ public class UIClientes extends javax.swing.JFrame {
         //</editor-fold>
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setVisible(true);
+        ct = new ControladorTarjeta(fabricaObj);
         uiParent = parent;
         uiParent.setVisible(false);
         fabrica = fabricaObj;
@@ -235,7 +239,8 @@ public class UIClientes extends javax.swing.JFrame {
                 
                 String viajeString = "Rutas calculadas para el viaje\n"+origen+"-->"+destino+":";
                 for (Recorrido recorrido : recorridos) {
-                    viajeString+="\n"+recorrido.getNombreRuta();
+                    DecimalFormat df = new DecimalFormat("#.###");
+                    viajeString+="\n"+df.format(recorrido.getNombreRuta());
                 }
                 jTextArea1.setText(viajeString);
                 
@@ -258,7 +263,22 @@ public class UIClientes extends javax.swing.JFrame {
     }//GEN-LAST:event_bttnCalcularRutaActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        //String plata = " SELECT tar.saldo FROM tarjeta AS tar NATURAL JOIN venta_tarjeta WHERE pin_tarjeta = '"+tfSaldo.getText()+"';";
         
+        
+        //ConexionBD conect = new ConexionBD();
+        Tarjeta tarjeta = ct.consultar(Integer.parseInt(jTextField1.getText()));
+        //conect.abrirConexion();
+        
+        //String precio = conect.retornarString(plata);
+        
+        if( tarjeta == null )
+            JOptionPane.showMessageDialog(this, "Pin Errado");
+        else {
+            int precio = tarjeta.getSaldo();
+            JOptionPane.showMessageDialog(this, "Su saldo es de "+ precio + " Pesos");
+        }
+            
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

@@ -21,7 +21,7 @@ public class Dibujo extends JPanel {
 
     public Dibujo() {
         this.setIgnoreRepaint(true); 
-            imagenMapa = new ImageIcon("megamapa.jpg").getImage();
+            imagenMapa = new ImageIcon("megamapa.JPG").getImage();
             imagenEstacion = new ImageIcon("estacion.png").getImage();
             this.setSize(1904, 3007);
             this.setAutoscrolls(true); 
@@ -50,7 +50,7 @@ public class Dibujo extends JPanel {
                 g2.drawString("Ruta "+recorrido.getNombreRuta(), 30, 30);
                 g2.drawString("# de paradas="+recorrido.getParadas().size(), 30, 50);
                 DecimalFormat df = new DecimalFormat("#.###");
-                g2.drawString("Total distancia="+df.format(recorrido.getDistanciaTotal())+" Km", 30, 70);
+                g2.drawString("Total distancia="+df.format(recorrido.getDistanciaTotal())+" Kms", 30, 70);
         
         //System.out.println("se van a dibujar " + ubicaciones.size() + " ubicaciones");
         
